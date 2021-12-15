@@ -24,6 +24,7 @@ let obj: object = {};
 //   name: "yongsu",
 //   age: 10
 // };
+
 let person: { name: string, age: number } = {
   name: 'yongsu',
   age: 30,
