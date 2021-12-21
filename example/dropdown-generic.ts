@@ -18,7 +18,7 @@ const numberOfProducts: DopDownItem<number>[] = [
 ];
 
 // 유니온 타입
-function createDropdownItem(item: DopDownItem<number> | DopDownItem<string>) {
+function createDropdownItem<T>(item: DopDownItem<T>) {
   const option = document.createElement('option');
   option.value = item.value.toString();
   option.innerText = item.value.toString();
@@ -28,7 +28,7 @@ function createDropdownItem(item: DopDownItem<number> | DopDownItem<string>) {
 
 // NOTE: 이메일 드롭 다운 아이템 추가
 emails.forEach(function (email) {
-  const item = createDropdownItem(email);
+  const item = createDropdownItem<number | string>(email);
   const selectTag = document.querySelector('#email-dropdown');
   selectTag.appendChild(item);
 });
