@@ -47,3 +47,21 @@ function logText<T>(text: T): T {
 
 logText<string>('a')
 logText<number>(10)
+
+// 인터페이스에 제네릭을 선언하는 방법
+
+// interface DropDown {
+//   value: string;
+//   selected: boolean;
+// }
+
+// const obj: DropDown = { value: 'ts', selected: false };
+// 여러개의 제네릭도 사용이 가능한가?
+
+interface DropDown<T> {
+  value: T;
+  selected: boolean;
+}
+
+const obj: DropDown<string> = { value: 'ts', selected: false };
+const objNumber: DropDown<number> = { value: 10, selected: false };
