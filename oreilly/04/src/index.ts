@@ -1,5 +1,10 @@
 // 반환 타입은 자동으로 추론 되지만, 원하면 명시할 수 있다.
 
+// function signature
+type Greet = (name: string) => string
+type Log = (message: string, userId?:string) => void
+type SumVariableSafe = (...numbers:number[]) => number
+
 function add(a: number, b:number):number {
   return a + b
 }
@@ -26,12 +31,18 @@ type Context = {
   userId?: string
 }
 
-function log(message: string, context:Context = {}) {
+// function log(message: string, context:Context = {}) {
+//   let time = new Date().toISOString()
+//   console.log(time, message, context.userId)
+// }
+
+let log: Log = (message, userId = 'Not signed in') => {
   let time = new Date().toISOString()
   console.log(time, message, context.userId)
 }
 
-log('hello', {appId: "ddfe", userId: "rew"})
+// log('hello', {appId: "ddfe", userId: "rew"})
+log("hello", "yong")
 
 function sum(...numbers: number[]) {
   return Array.from(arguments)
@@ -45,9 +56,7 @@ let this_func = {
   }
 }
 
-console.log(this_func.a())
 let a_func = this_func.a
-console.log(a_func())
 
 function fancyDate(this: Date) {
   return `${this.getDate()}:${this.getMonth()}:${this.getFullYear}`
@@ -71,3 +80,15 @@ console.log(fibonacciGenerator.next())
 console.log(fibonacciGenerator.next())
 console.log(fibonacciGenerator.next())
 console.log(fibonacciGenerator.next())
+
+
+function times(
+  f: (index: number) => void,
+  n: number
+) {
+  for(let i = 0; i < n; i++) {
+    f(i)
+  }
+}
+
+times(n => console.log(n), 5)
