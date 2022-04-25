@@ -2,7 +2,14 @@
 
 // function signature
 type Greet = (name: string) => string
-type Log = (message: string, userId?:string) => void
+
+// 단축형 호출 시그니처
+// type Log = (message: string, userId?:string) => void
+
+// 전체 호출 시그니처
+type Log = {
+  (message: string, userId?: string): void
+}
 type SumVariableSafe = (...numbers:number[]) => number
 
 function add(a: number, b:number):number {
@@ -92,3 +99,6 @@ function times(
 }
 
 times(n => console.log(n), 5)
+
+
+// overloading
