@@ -102,3 +102,49 @@ times(n => console.log(n), 5)
 
 
 // overloading
+
+// variable - polymorphic type parameter
+
+// Filter 시그니처를 적용하면 에러를 발생시킨다.
+// object type은 객체의 실체 형태에 대해서는 어떠한 것도 알려주지 않기 때문이다.
+
+type Filter = {
+  // tslint:disable-next-line: callable-types
+  (array: number[], f: (item: number) => boolean): number[]
+  (array: string[], f: (item: string) => boolean): string[]
+  (array: object[], f: (item: object) => boolean): object[]
+}
+
+
+// generic type parameter
+type FilterT = {
+  // tslint:disable-next-line: callable-types
+  <T>(array: T[], f: (item:T) => T) :T[]
+}
+
+function filter(array, f) {
+  let result = []
+  for(let i = 0; i < array.length; i++) {
+    let item = array[i]
+    if(f(item)) {
+      result.push(item)
+    }
+  }
+
+  return result
+}
+
+filter([1, 2, 3, 4], _ => _ < 3)
+
+type MaP = {
+  // tslint:disable-next-line: callable-types
+  <T, U>(array: T[], f: (item:T) => U): U[]
+}
+
+function map(array, f) {
+  let result = []
+  for(let i = 0; i < array.length; i++) {
+    let item = f(array[i])
+  }
+  return result
+}
