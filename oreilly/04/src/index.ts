@@ -103,6 +103,21 @@ times(n => console.log(n), 5)
 
 // overloading
 
+type Reserve = {
+  (from: Date, to:Date, destination: string): void
+  (from: Date, destination: string): void
+  (destination: string): void
+}
+
+let reserve: Reserve = (
+  fromOrDestination: Date | string,
+  toOrDestination?: Date | string,
+  destination?: string
+) => {
+  console.log("hello")
+}
+
+
 // variable - polymorphic type parameter
 
 // Filter 시그니처를 적용하면 에러를 발생시킨다.
