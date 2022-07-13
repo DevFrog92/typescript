@@ -8,8 +8,8 @@ const users = {}
 
 /**
  * @typedef {object} Address
- * @property {string} street
  * @property {string} city
+ * @property {string} street
  */
 
 /**
@@ -22,7 +22,6 @@ const users = {}
 /**
  * @returns {Promise<User>}
  */
-
 function fetchUser() {
   return axios.get(url)
 }
@@ -31,18 +30,14 @@ fetchUser().then(function (response) {
   response.address.city
 })
 
-
 function startApp() {
   fetchUser()
     .then(function (response) {
-      // console.log(response);
       user = response.data;
-      // TODO: 이름, 이메일, 주소 표시하기
       console.log(user)
       username.innerText = user.name
       email.innerText = user.email
-      // 존재하지 않는 값이 암묵적으로 undifined로 할당된다.
-      address.innerText = user.address.street
+      address.innerText = user.address.city
     })
     .catch(function (error) {
       console.log(error);
