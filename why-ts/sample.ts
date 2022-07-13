@@ -1,7 +1,5 @@
-// function sum(a: number, b: number): number {
-//   return a + b;
-// }
+function sum_t(a:number, b:number):number {
+  return a+b
+}
 
-// const result = sum(10, 20);
-// // result.toLocaleString()
-// result.toLocaleString()
+const result = sum_t(1, 10);
